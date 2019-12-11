@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test07</title>
+	<link rel = "stylesheet"  type="text/css" href = "test.css">
+</head>
+<body>
+	<script src="animate.js"></script>
+	<div class="attention">
+		<div class="image">
+			<img src="images/a15.png">
+		</div>
+		<div class="text">
+			<div id ="contain">[温馨提示]最近有不少不法分子在网上骗人，请大家注意！！！</div>
+		</div>
+	</div>
+	<div class = "box" id = "box">
+		<div class = "slider" id = "slider">
+			<div class = "slide"><img src="images/b5.png" alt=""></div>
+			<div class = "slide"><img src="images/b1.png" alt=""></div>
+			<div class = "slide"><img src="images/b2.png" alt=""></div>
+			<div class = "slide"><img src="images/b3.png" alt=""></div>
+			<div class = "slide"><img src="images/b4.png" alt=""></div>
+			<div class = "slide"><img src="images/b5.png" alt=""></div>
+			<div class = "slide"><img src="images/b1.png" alt=""></div>
+		</div>
+		<span class = "page" id = "left"><</span>
+		<span class="page" id = "right">></span>
+		<ul class="nav" id="nav">
+			<li class="active">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		var box = document.getElementById('box');
+		var navList = document.getElementById('nav').children;
+		var slider = document.getElementById('slider');
+		var index = 1;
+		var isMoving = false;
+
+		//滚动提示
+		var contain = document.getElementById("contain");
+	    setInterval(function(){
+	        contain.style.left=parseInt(getStyle(contain,"left"))-1+"px";
+	        if(parseInt(getStyle(contain,"left"))<=-350){
+	            contain.style.left="1000px";
+	        }
+	    },15)
+
+         //切换上一张
+		function last(){   
+		    if(!isMoving){
+		    	isMoving = true;
+		    	index--;
+				animate(slider,{left:-1200*index},function(){
+					if(index === 0){
+						slider.style.left = "-6000px";
+						index = 6;
+					}
+					isMoving = false;
+				});
+		    }
+		}
+		//切换下一张
+		function next(){   
+		    if(!isMoving){
+		    	isMoving = true;
+		    	index++;
+				changeLi();
+				animate(slider,{left:-1200*index},function(){
+					if(index === 6){
+						slider.style.left = "-1200px";
+						index = 1;
+					}
+					isMoving = false;
+				});
+		    }
+		}
+		//图片自动轮播
+		var timer = setInterval(next,3000);
+		//滑入图片，箭头渐出
+		box.onmouseover = function(){   
+			animate(left,{opacity:50});
+			animate(right,{opacity:50});
+			clearInterval(timer)
+		}
+		//画出图片，箭头淡
+		box.onmouseout = function(){    
+			animate(left,{opacity:0});
+			animate(right,{opacity:0});
+			timer = setInterval(next,3000);
+		}
+
+		//左右箭头
+		var right = document.getElementById('right');
+		var left = document.getElementById('left');
+		right.onclick = next;
+		left.onclick = last;
+
+        //点击数字更换图片
+		for(var i = 0;i < navList.length;i++){
+			if(!isMoving){
+				isMoving = true;
+				navList[i].idx = i + 1;
+				navList[i].onclick = function(){
+					index = this.idx;
+					changeLi();
+					animate(slider,{left:-1200*index});
+				}
+				isMoving = false;
+			}
+		}
+		//数字样式变化
+		function changeLi(){
+			for (var i = 0; i < navList.length; i++) {
+				navList[i].className = null;
+			}
+
+			if (index === 6) {
+				navList[0].className = 'active';
+			}else{
+				navList[index-1].className = 'active';
+			}
+			
+		}
+
+	</script>
+</body>
+</html>

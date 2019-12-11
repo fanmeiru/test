@@ -1,0 +1,94 @@
+*{
+		padding: 0;
+		margin: 0;
+	}
+	ul,li{
+		list-style: none;
+	}
+	.attention{
+		height: 20px;
+		width: auto;
+		background-color: gray;
+		position: relative;
+	}
+	.image{
+		position: absolute;
+		cursor: pointer;
+		left: 200px;
+		top: 1px;
+	}
+	.text{
+		width: 940px;
+		height: 20px;
+		overflow: hidden;
+		position: absolute;
+		left: 230px;
+		top: 1px;
+	}
+	#contain{
+		font-size: 13px;
+		color: red;
+		position: absolute;
+		/*left: -350px;    左边   */
+		left: 940px;    /*右边*/
+	}
+	.box{
+		height: 382px;
+		width: 1200px;
+		border: 1px solid white;
+		margin: 10px auto;
+		position: relative;
+		overflow: hidden;
+	}
+	.slider{
+		width: 8400px;
+		height: 382px;
+		position: absolute;
+		left: -1200px;
+	}
+	.slide{
+		width: 1200px;
+		overflow: hidden;
+		float: left;
+	}
+	.page{
+		display: block;
+		width: 30px;
+		height: 50px;
+		text-align: center;
+		cursor: pointer;
+		color: white;
+		top: 165px;
+		line-height: 50px;
+		background: rgb(255,0,0);
+		opacity: 0;
+		font-size: 30px;
+		position: absolute;
+	}
+	#left{
+		left: 30px;
+	}
+	#right{
+		right: 30px;
+	}
+	.nav{
+		position: absolute;
+		left: 500px;
+		bottom: 20px;
+	}
+	.nav>li{
+		float: left;
+		width: 20px;
+		height: 20px;
+		background: #ccc;
+		cursor: pointer;
+		margin: 0 10px;
+		padding-top: 2px;
+		font-size: 12px;
+		text-align: center; 
+		border-radius: 50%;
+	}
+	.nav .active{
+		background: red;
+		color: white;
+	}
